@@ -34,8 +34,8 @@
                 <li class="nav__link nav__user-link">
                   <form action="{{route('logout')}}" method="post">
                     @csrf
-                  <input type="submit" class="btn btn-danger m-0 p-0" value="logout">
-                </form>
+                    <input type="submit" class="btn btn-danger m-0 p-0" value="logout">
+                  </form>
                 </li>
                 
               </ul>

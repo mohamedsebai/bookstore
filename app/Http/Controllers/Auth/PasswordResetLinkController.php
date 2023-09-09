@@ -15,14 +15,15 @@ class PasswordResetLinkController extends Controller
      */
     public function create(): View
     {
-        return view('auth.forgot-password');
+        //return view('auth.forgot-password');
+        return view('front.account.forget-password');
     }
 
     /**
      * Handle an incoming password reset link request.
      *
      * @throws \Illuminate\Validation\ValidationException
-     */
+    */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

@@ -89,8 +89,19 @@
               <button class="text-center fs-6 py-2 w-100
                       bg-black text-white border-0 rounded-1">تسجيل الدخول
               </button>
+
+              @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                    Forgot your password?
+                </a>
+              @endif
             </form>
+
+            
           </div>
+
+
+
           <div class="account__register w-100">
             <form class="mb-5" action="{{ route('register') }}" method="post">
               @csrf
@@ -181,35 +192,7 @@
                 Already registered?
             </a>
           </div>
-          <div class="account__forget">
-            {{-- <p>
-              فقدت كلمة المرور الخاصة بك؟ الرجاء إدخال عنوان البريد الإلكتروني
-              الخاص بك. ستتلقى رابطا لإنشاء كلمة مرور جديدة عبر البريد
-              الإلكتروني.
-            </p> --}}
-            {{-- <form action="">
-              <div class="input-group rounded-1 mb-3">
-                <input
-                  type="text"
-                  class="form-control p-3"
-                  placeholder="البريد الالكتروني"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                />
-                <span
-                  class="input-group-text login__input-icon"
-                  id="basic-addon1"
-                >
-                  <i class="fa-solid fa-envelope"></i>
-                </span>
-              </div>
-              <button
-                class="text-center fs-6 py-2 w-100 bg-black text-white border-0 rounded-1"
-              >
-                اعادة تعيين كلمة المرور
-              </button>
-            </form> --}}
-          </div>
+          
         </div>
       </div>
     </main>

@@ -18,5 +18,11 @@
             <li class="profile__tab">
               <a class="py-2 px-3 text-black text-decoration-none" href="{{route('front.favourite.index')}}">المفضلة</a>
             </li>
+            <li class="profile__tab">
+              <form action="{{route('logout')}}" method="post">
+                @csrf
+                <input type="submit" class="btn btn-danger m-0 p-0" value="logout">
+              </form>
+            </li>
           </ul>
         </div>
