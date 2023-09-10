@@ -20,8 +20,7 @@
     @endif
 
     <form method="POST" action="{{ route('verification.send') }}" class="mt-5 mb-4">
-            @csrf
-
+        @csrf
         <input type="submit" class="btn btn-danger" value="verfiy email">
     </form>
 
