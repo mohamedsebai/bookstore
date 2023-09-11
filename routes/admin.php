@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 
 // Route::get('/', function () {
@@ -25,6 +26,7 @@ Route::group(['as'=>'admin.'], function(){
 
         Route::get('/', [HomeController::class, 'index'])
                     ->name('home');
+        Route::resource('/categories', CategoryController::class)->except(['show']);
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                     ->name('logout');
     });
