@@ -316,7 +316,7 @@ return [
 
         [
             'text' => 'categories',
-            'url'  => 'admin/categories',
+            'url'  => 'admins/categories',
             'icon' => 'fas fa-fw fa-lock',
         ],
 
