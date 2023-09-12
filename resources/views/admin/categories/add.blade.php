@@ -12,8 +12,6 @@
 
 <div class="container">
 
-    <div class="row">
-        <div class="form-box">
             
             <a class="btn btn-warning mb-5" href="{{ route('admin.categories.index') }}">Categories list</a>
 
@@ -21,7 +19,7 @@
             @if (session('message'))
                 <div class="alert alert-success m-2 mb-2 p-0">{{session('message')}}</div>
             @endif
-            <form action="{{route('admin.categories.store')}}" method="POST">
+            <form action="{{route('admin.categories.store')}}" method="POST" class="w-75">
                 @csrf
             <div class="form-group">
                 <label>Title:</label>
@@ -34,8 +32,8 @@
 
             <input type="submit" class="btn btn-primary" value="add">
             </form>
-            </div>
-        </div>
+      
+
 </div>
 
 @endsection

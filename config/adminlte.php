@@ -315,8 +315,18 @@ return [
         ['header' => 'Dashboard'],
 
         [
-            'text' => 'categories',
+            'text' => 'Categories',
             'url'  => 'admins/categories',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'Tags',
+            'url'  => 'admins/tags',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'Branch',
+            'url'  => 'admins/branches',
             'icon' => 'fas fa-fw fa-lock',
         ],
 

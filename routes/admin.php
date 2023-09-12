@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\TagController;
 
 // Route::get('/', function () {
 //     return view('admin.home.index');
@@ -26,7 +28,11 @@ Route::group(['as'=>'admin.'], function(){
 
         Route::get('/', [HomeController::class, 'index'])
                     ->name('home');
+        
         Route::resource('/categories', CategoryController::class)->except(['show']);
+        Route::resource('/tags', TagController::class)->except(['show']);
+        Route::resource('/branches', BranchController::class)->except(['show']);
+
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                     ->name('logout');
     });
