@@ -329,6 +329,21 @@ return [
             'url'  => 'admins/branches',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        [
+            'text' => 'Message',
+            'url'  => 'admins/messages',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'Sliders',
+            'url'  => 'admins/sliders',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'Banners',
+            'url'  => 'admins/banners',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
 
     ],
 
