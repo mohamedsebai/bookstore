@@ -10,14 +10,7 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TagController;
 
-// Route::get('/', function () {
-//     return view('admin.home.index');
-// });
 
-// we need to create middleware for isAdminMiddleware
-// Route::group(['middleware' => ['auth:admin']], function() {
-//     Route::get('/users', [UserController::class, 'users']);
-// });
 Route::group(['as'=>'admin.'], function(){
     
 
@@ -39,7 +32,7 @@ Route::group(['as'=>'admin.'], function(){
         Route::resource('/sliders', SliderController::class)->except(['show','edit','update']);
         Route::get('sliders/updateStatus/{slider}/{status}', [SliderController::class, 'updateStatus'])
         ->name('sliders.updateStatus');
-        
+
         Route::resource('/banners', BannerController::class)->except(['show','edit','update']);
         Route::get('banners/updateStatus/{banner}/{status}', [BannerController::class, 'updateStatus'])
         ->name('banners.updateStatus');

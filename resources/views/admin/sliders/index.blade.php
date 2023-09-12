@@ -39,8 +39,8 @@
                         </td>
                         <td>
                         <a href="{{ route('admin.sliders.updateStatus', ['slider' => $slider->id, 'status' =>  $slider->status == 1 ? 0 : 1 ]) }}"
-                                class="btn btn-{{ $slider->status == 1 ? 'success' : 'danger' }}  custom-btn">
-                                {{ $slider->status == 1 ? 'Visiable' : 'Not Visable' }}
+                                class="btn btn-warning  custom-btn">
+                                change status
                             </a>
 
                         <form action="{{route('admin.sliders.destroy', $slider->id)}}" method="post">

@@ -39,8 +39,8 @@
                         </td>
                         <td>
                         <a href="{{ route('admin.banners.updateStatus', ['banner' => $banner->id, 'status' =>  $banner->status == 1 ? 0 : 1 ]) }}"
-                                class="btn btn-{{ $banner->status == 1 ? 'success' : 'danger' }}  custom-btn">
-                                {{ $banner->status == 1 ? 'Visiable' : 'Not Visable' }}
+                                class="btn btn-warning  custom-btn">
+                               change status
                             </a>
 
                         <form action="{{route('admin.banners.destroy', $banner->id)}}" method="post">
