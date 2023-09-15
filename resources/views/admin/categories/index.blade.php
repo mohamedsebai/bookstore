@@ -6,14 +6,14 @@
 @section('title', 'categories')
 
 @section('content_header')
-    
+
     <h2 class="text-center">Categories List</h2>
 @stop
 
 @section('content')
-    
 
-        
+
+
         <a class="btn btn-danger mb-5" href="{{route('admin.categories.create')}}">Add new category</a>
 
         @if (session('message'))
@@ -46,8 +46,8 @@
                     <div class="alert alert-danger">There is no categories yet</div>
                 @endforelse
             @endisset
-            
-            
+
+
 
 
         </tbody>

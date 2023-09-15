@@ -3,7 +3,7 @@
 @section('title', 'categories')
 
 @section('content_header')
-    
+
     <h2 class="text-center">Add Category</h2>
 
 @stop
@@ -12,7 +12,7 @@
 
 <div class="container">
 
-            
+
             <a class="btn btn-warning mb-5" href="{{ route('admin.categories.index') }}">Categories list</a>
 
 
@@ -32,7 +32,7 @@
 
             <input type="submit" class="btn btn-primary" value="add">
             </form>
-      
+
 
 </div>
 

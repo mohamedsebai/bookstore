@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ProductContorller;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TagController;
 
@@ -28,6 +29,8 @@ Route::group(['as'=>'admin.'], function(){
         Route::resource('/categories', CategoryController::class)->except(['show']);
         Route::resource('/tags', TagController::class)->except(['show']);
         Route::resource('/branches', BranchController::class)->except(['show']);
+
+        Route::resource('/products', ProductContorller::class)->except(['show']);
 
         Route::resource('/sliders', SliderController::class)->except(['show','edit','update']);
         Route::get('sliders/updateStatus/{slider}/{status}', [SliderController::class, 'updateStatus'])

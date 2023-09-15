@@ -345,6 +345,12 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
 
+        [
+            'text' => 'Product',
+            'url'  => 'admins/products',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
     ],
 
     /*
