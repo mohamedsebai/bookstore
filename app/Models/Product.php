@@ -22,4 +22,10 @@ class Product extends Model
     public function favourites(){
         return $this->hasMany(Favourite::class);
     }
+
+    public function answers(){
+        return $this->hasMany(FaqAnswer::class);
+    }
+
+
 }
