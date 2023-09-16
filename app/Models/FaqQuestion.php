@@ -13,7 +13,6 @@ class FaqQuestion extends Model
 
     protected $fillable = ['question'];
 
-
     public function answers(){
         return $this->hasMany(FaqAnswer::class);
     }

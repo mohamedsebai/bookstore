@@ -105,11 +105,8 @@
             </div>
 
 
-
-
-
-
             <input type="submit" class="btn btn-primary" value="add">
+
             </form>
 
 

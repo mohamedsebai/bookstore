@@ -351,6 +351,12 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
 
+        [
+            'text' => 'FAQ',
+            'url'  => 'admins/faq',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
     ],
 
     /*

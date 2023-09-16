@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\FaqAnswer;
+use App\Models\FaqQuestion;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -27,7 +29,8 @@ class ProductContorller extends Controller
      */
     public function create()
     {
-        return view('admin.products.add');
+        $faq_questions = FaqQuestion::get();
+        return view('admin.products.add', compact('faq_questions'));
     }
 
     /**
@@ -44,6 +47,7 @@ class ProductContorller extends Controller
             $newImageName = rand(0, mt_getrandmax()) . '-' . "-Img" . '.' . $extension;
             $request->image->move(public_path($this->imgPath), $newImageName);
         }
+
         Product::create([
             'img' =>  $newImageName,
             'title' => $request->title,
@@ -65,6 +69,13 @@ class ProductContorller extends Controller
     public function edit(Product $product)
     {
         return view('admin.products.edit', compact('product'));
+    }
+
+
+    public function show(Product $product){
+        $faq_answers = FaqAnswer::get();
+
+        return view('admin.products.show', compact('faq_answers'));
     }
 
     /**
