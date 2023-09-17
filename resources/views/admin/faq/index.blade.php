@@ -7,14 +7,14 @@
 
 @section('content_header')
 
-    <h2 class="text-center">faq List</h2>
+    <h2 class="text-center">FAQ List</h2>
 @stop
 
 @section('content')
 
 
 
-        <a class="btn btn-danger mb-5" href="{{route('admin.faq.create')}}">Add new faq_question</a>
+        <a class="btn btn-danger mb-5" href="{{route('admin.faq.create')}}">Add new FAQ</a>
 
         @if (session('message'))
             <div class="alert alert-success m-2 mb-2 p-0">{{session('message')}}</div>
@@ -23,7 +23,8 @@
         <thead class="text-center">
             <tr>
                 <th>ID</th>
-                <th>Title</th>
+                <th>Question</th>
+                <th>Answer</th>
                 <th>option</th>
             </tr>
         </thead>
@@ -33,6 +34,7 @@
                     <tr>
                         <td>{{ $faq_question->id }}</td>
                         <td>{{ $faq_question->question }}</td>
+                        <td>{{ $faq_question->answer }}</td>
                         <td>
                         <a href="{{route('admin.faq.edit', $faq_question->id)}}" class="btn btn-primary custom-btn"><i class="fa fa-close"></i>Edit</a>
                         <form action="{{route('admin.faq.destroy', $faq_question->id)}}" method="post">

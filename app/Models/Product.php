@@ -23,9 +23,4 @@ class Product extends Model
         return $this->hasMany(Favourite::class);
     }
 
-    public function answers(){
-        return $this->hasMany(FaqAnswer::class);
-    }
-
-
 }

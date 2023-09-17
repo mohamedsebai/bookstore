@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FaqQuestion;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -13,7 +13,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faq = FaqQuestion::paginate(10);
+        $faq = Faq::paginate(10);
         return view('admin.faq.index', compact('faq'));
     }
 
@@ -31,10 +31,14 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'question' => ['required', 'max:100', 'string']
+            'question' => ['required', 'max:100', 'string'],
+            'answer' => ['required', 'max:100', 'string']
         ]);
 
-        FaqQuestion::create(['question'=> $request->question]);
+        Faq::create([
+            'question'=> $request->question,
+            'answer'=> $request->answer
+        ]);
 
         return back()->with('message', 'data added successfully');
     }
@@ -42,7 +46,7 @@ class FaqController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FaqQuestion $faq)
+    public function edit(Faq $faq)
     {
         return view('admin.faq.edit', compact('faq'));
     }
@@ -50,13 +54,17 @@ class FaqController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FaqQuestion $faq)
+    public function update(Request $request, Faq $faq)
     {
         $request->validate([
-            'question' => ['required', 'max:100', 'string']
+            'question' => ['required', 'max:100', 'string'],
+            'answer' => ['required', 'max:100', 'string']
         ]);
 
-        $faq->update(['question'=> $request->question]);
+        $faq->update([
+            'question'=> $request->question ,
+            'answer'=> $request->answer
+        ]);
 
         return back()->with('message', 'data updated successfully');
     }
@@ -64,7 +72,7 @@ class FaqController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FaqQuestion $faq)
+    public function destroy(Faq $faq)
     {
         $faq->delete();
         return back()->with('message', 'data deleted successfully');

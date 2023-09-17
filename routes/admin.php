@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FaqAnswerContorller;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProductContorller;
@@ -31,7 +32,7 @@ Route::group(['as'=>'admin.'], function(){
         Route::resource('/tags', TagController::class)->except(['show']);
         Route::resource('/branches', BranchController::class)->except(['show']);
 
-        Route::resource('/products', ProductContorller::class);
+        Route::resource('/products', ProductContorller::class)->except(['show']);
 
         Route::resource('/faq', FaqController::class)->except(['show']);
 

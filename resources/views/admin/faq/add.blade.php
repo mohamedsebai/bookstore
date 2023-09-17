@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-    <h2 class="text-center">Add Faq Question</h2>
+    <h2 class="text-center">Add FAQ</h2>
 
 @stop
 
@@ -13,7 +13,7 @@
 <div class="container">
 
 
-            <a class="btn btn-warning mb-5" href="{{ route('admin.faq.index') }}">faq list</a>
+            <a class="btn btn-warning mb-5" href="{{ route('admin.faq.index') }}">FAQ list</a>
 
 
             @if (session('message'))
@@ -28,6 +28,15 @@
                 <input class="form-control" type="text" name="question" placeholder="Type question"
                 value="{{old('question')}}" >
                 @error('question')
+                    <div class="alert alert-danger m-2 mb-2 p-0">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label>Answer:</label>
+                <input class="form-control" type="text" name="answer" placeholder="Type answer"
+                value="{{old('answer')}}" >
+                @error('answer')
                     <div class="alert alert-danger m-2 mb-2 p-0">{{ $message }}</div>
                 @enderror
             </div>

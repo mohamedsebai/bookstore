@@ -29,8 +29,7 @@ class ProductContorller extends Controller
      */
     public function create()
     {
-        $faq_questions = FaqQuestion::get();
-        return view('admin.products.add', compact('faq_questions'));
+        return view('admin.products.add');
     }
 
     /**
@@ -60,6 +59,7 @@ class ProductContorller extends Controller
             'pages_num' => $request->pages_num
         ]);
 
+
         return back()->with('message', 'data added successfully');
     }
 
@@ -69,13 +69,6 @@ class ProductContorller extends Controller
     public function edit(Product $product)
     {
         return view('admin.products.edit', compact('product'));
-    }
-
-
-    public function show(Product $product){
-        $faq_answers = FaqAnswer::get();
-
-        return view('admin.products.show', compact('faq_answers'));
     }
 
     /**

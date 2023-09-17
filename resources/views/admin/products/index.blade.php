@@ -54,10 +54,6 @@
                             class="btn btn-primary custom-btn"><i class="fa fa-close">
                                 </i>Edit
                         </a>
-                        <a href="{{route('admin.products.show', $product->id)}}"
-                            class="btn btn-primary custom-btn"><i class="fa fa-close">
-                                </i>FAQ
-                        </a>
                         <form action="{{route('admin.products.destroy', $product->id)}}" method="post">
                             @csrf
                             @method('DELETE')
