@@ -32,7 +32,7 @@ Route::group(['as'=>'admin.'], function(){
         Route::resource('/tags', TagController::class)->except(['show']);
         Route::resource('/branches', BranchController::class)->except(['show']);
 
-        Route::resource('/products', ProductContorller::class)->except(['show']);
+        Route::resource('/products', ProductContorller::class);
 
         Route::resource('/faq', FaqController::class)->except(['show']);
 

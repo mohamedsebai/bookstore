@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\FaqAnswer;
 use App\Models\FaqQuestion;
+use App\Models\Favourite;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -61,6 +62,13 @@ class ProductContorller extends Controller
 
 
         return back()->with('message', 'data added successfully');
+    }
+
+
+    public function show(Product $product){
+
+        $favourites = Favourite::where('product_id', $product->id)->get();
+        return view('admin.products.show', compact('favourites'));
     }
 
         /**
