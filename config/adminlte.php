@@ -357,6 +357,18 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
 
+        [
+            'text' => 'Orders',
+            'url'  => 'admins/orders',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
+        [
+            'text' => 'Carts',
+            'url'  => 'admins/carts',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
     ],
 
     /*

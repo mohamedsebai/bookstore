@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BranchController;
+use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\FaqAnswerContorller;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductContorller;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TagController;
@@ -35,6 +36,16 @@ Route::group(['as'=>'admin.'], function(){
         Route::resource('/products', ProductContorller::class);
 
         Route::resource('/faq', FaqController::class)->except(['show']);
+
+        Route::get('/orders', [OrderController::class, 'index'])
+        ->name('orders.index');
+        Route::delete('/orders/delete/{order}', [OrderController::class, 'destroy'])
+        ->name('orders.destroy');
+
+        Route::get('/carts', [CartController::class, 'index'])
+        ->name('carts.index');
+        Route::delete('/carts/delete/{cart}', [CartController::class, 'destroy'])
+        ->name('carts.destroy');
 
         Route::resource('/sliders', SliderController::class)->except(['show','edit','update']);
         Route::get('sliders/updateStatus/{slider}/{status}', [SliderController::class, 'updateStatus'])
