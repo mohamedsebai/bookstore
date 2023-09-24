@@ -17,6 +17,11 @@ class CartController extends Controller
         return view('admin.carts.index', compact('carts'));
     }
 
+
+    public function show(Cart $cart){
+        return view('admin.carts.show', compact('cart'));
+    }
+
     /**
      * Remove the specified resource from storage.
      */

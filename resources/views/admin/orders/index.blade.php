@@ -12,7 +12,7 @@
 
 @section('content')
 
-
+<a class="btn btn-warning mb-5" href="{{ route('admin.orders.create') }}">Add Order</a>
         @if (session('message'))
             <div class="alert alert-success m-2 mb-2 p-0">{{session('message')}}</div>
         @endif
@@ -43,8 +43,9 @@
                         <td>{{ $order->discount }}</td>
                         <td>{{ $order->quantity }}</td>
                         <td>{{ $order->total }}</td>
-                        <td>{{ $order->status == 0 ? 'Not Complated' : 'Complated'  }}</td>
+                        <td>{{ $order->status == 0 ? 'Not Complated if user complate his checkout it will be complated' : 'Complated'  }}</td>
                         <td>
+                        <a href="{{route('admin.orders.edit', $order->id)}}" class="btn btn-primary custom-btn"><i class="fa fa-close"></i>Edit</a>
                         <form action="{{route('admin.orders.destroy', $order->id)}}" method="post">
                             @csrf
                             @method('DELETE')

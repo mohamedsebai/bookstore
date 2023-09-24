@@ -31,6 +31,7 @@
                         <td>{{ $cart->id }}</td>
                         <td>{{ $cart->user->name }}</td>
                         <td>
+                        <a href="{{route('admin.carts.show', $cart->id)}}" class="btn btn-primary custom-btn"><i class="fa fa-close"></i>show</a>
                         <form action="{{route('admin.carts.destroy', $cart->id)}}" method="post">
                             @csrf
                             @method('DELETE')
