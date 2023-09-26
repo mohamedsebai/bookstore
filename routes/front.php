@@ -35,11 +35,12 @@ Route::group(['as'=>'front.'], function(){
     Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 
-    
+
 
     Route::get('/branches', [BrancheController::class, 'index'])->name('branches.index');
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
     Route::get('/favourite', [FavouriteController::class, 'index'])->name('favourite.index');
 
@@ -49,15 +50,15 @@ Route::group(['as'=>'front.'], function(){
 
     Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 
-    Route::get('/single-product', [SingleProductController::class, 'index'])->name('single.product.index');
+    Route::get('/single-product/{id}', [SingleProductController::class, 'index'])->name('single.product.index');
 
 
- 
+
 
     Route::middleware('guest')->group(function () {
         Route::get('/account', [AccountController::class, 'index'])->name('account.index');
     });
-        
+
 
 
     Route::middleware('auth')->group(function () {
@@ -71,11 +72,11 @@ Route::group(['as'=>'front.'], function(){
 
         Route::get('/account/details', [AccountController::class, 'details'])->name('account.details');
         Route::get('/account/profile', [AccountController::class, 'profile'])->name('account.profile');
-    
-    
+
+
     });
 
 
- 
+
 
 });

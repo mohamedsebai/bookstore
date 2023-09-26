@@ -69,38 +69,61 @@
     <section class="section-container contact d-md-flex align-items-center mb-3">
       <div class="contact__side w-50">
         <h4 class="mb-3">يسعدنا تواصلك معنا في أى وقت</h4>
+
+
         <p>إذا كنت تواجه أي مشكلة أو ترغب في إسترجاع أو إستبدال المنتج لا تتردد أبدأ بالتواصل معنا في أي وقت. كل ماعليك هو ملئ النموذج التالي ببيانات صحيحة وسنقوم بمراجعة طلبك في أسرع وقت.</p>
-        <form class="contact__form" action="">
+
+
+        @if (session('message'))
+           <div class="alert alert->success">{{ session('message') }}</div>
+        @endif
+        <form class="contact__form" action="{{ route('front.contact.store') }}" method="post">
+            @csrf
           <div class="d-flex gap-3 mb-3">
             <div class="w-50">
               <label for="name">الاسم<span class="required">*</span></label>
-              <input class="contact__input" id="name" type="text">
+              <input class="contact__input" id="name" type="text" name="name">
+              @error('name')
+                 <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
             <div class="w-50">
               <label for="phone">رقم الهاتف<span class="required">*</span></label>
-              <input class="contact__input" id="phone" type="text">
+              <input class="contact__input" id="phone" type="text" name="phone">
+              @error('phone')
+                 <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
           </div>
           <div class="mb-3">
             <label for="email">البريد الالكتروني<span class="required">*</span></label>
-            <input class="contact__input" id="email" type="text">
+            <input class="contact__input" id="email" type="text" name="email">
+            @error('email')
+                 <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
           </div>
           <div class="mb-3">
             <label for="reason">سبب التواصل<span class="required">*</span></label>
-            <select class="contact__input" id="reason">
+            <select class="contact__input" id="reason" name="subject">
               <option value="">- اضغط هنا لاختيرا السبب -</option>
-              <option value="">استفسار</option>
-              <option value="">استبدال</option>
-              <option value="">استرجاع</option>
-              <option value="">استعجال اوردر</option>
-              <option value="">اخري</option>
+              <option value="استفسار">استفسار</option>
+              <option value="استبدال">استبدال</option>
+              <option value="استرجاع">استرجاع</option>
+              <option value=" اوردر استعجال">استعجال اوردر</option>
+              <option value="اخري">اخري</option>
             </select>
+            @error('subject')
+                 <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
           </div>
           <div>
             <label for="reason">نص الرسالة<span class="required">*</span></label>
-            <textarea class="contact__input" name="" id=""></textarea>
+            <textarea class="contact__input" name="content" id=""></textarea>
+            @error('content')
+                 <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
           </div>
-          <button class="primary-button w-100 rounded-2">ارسال الطلب</button>
+          <button type="submit" class="primary-button w-100 rounded-2">ارسال الطلب</button>
         </form>
       </div>
       <div class="contact__side w-50 text-center">

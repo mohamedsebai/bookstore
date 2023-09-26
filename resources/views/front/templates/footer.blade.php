@@ -51,19 +51,6 @@
                 <div class="text-gray">coding.arabic@gmail.com</div>
                 </div>
             </div>
-            <div>
-                <div class="footer__list-title fw-bolder mb-3">
-                اشترك في نشرتنا
-                </div>
-                <form class="footer__form position-relative">
-                <input
-                    class="footer__email-input w-100 bg-transparent border border-white py-2 px-3 rounded-2 text-white pe-5"
-                placeholder="البريد الالكتروني">
-              <button
-                class="footer__submit mx-3 position-absolute top-50 translate-middle-y end-0 bg-transparent border-0 text-white d-flex align-items-center"><i
-                  class="fa-solid fa-paper-plane"></i></button>
-            </form>
-          </div>
         </div>
       </div>
     </div>

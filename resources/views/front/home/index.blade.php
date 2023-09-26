@@ -8,15 +8,19 @@
     <!-- Hero Section Start -->
     <section class="section-container hero">
       <div class="owl-carousel hero__carousel owl-theme">
-        <div class="hero__item">
-          <img class="hero__img" src="{{url('front/assets/images/carousel-2.png')}}" alt="">
-        </div>
-        <div class="hero__item">
-          <img class="hero__img" src="{{url('front/assets/images/carousel-2.png')}}" alt="">
-        </div>
-        <div class="hero__item">
-          <img class="hero__img" src="{{url('front/assets/images/carousel-2.png')}}" alt="">
-        </div>
+
+        @isset($sliders)
+            @forelse ($sliders as $slider)
+            <div class="hero__item">
+                <img class="hero__img" src="{{url('admin/assets/images/sliders/'  . $slider->img)}}" alt="">
+            </div>
+            @empty
+            <div class="hero__item">
+                <img class="hero__img" src="{{url('front/assets/images/carousel-2.png')}}" alt="">
+            </div>
+            @endforelse
+        @endisset
+
       </div>
     </section>
     <!-- Hero Section End -->
@@ -48,344 +52,66 @@
     <!-- Products Section Start -->
     <section class="section-container mb-4">
       <div class="owl-carousel products__slider owl-theme">
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-1.webp')}}" data-id="white">
+
+        @isset($products)
+            @forelse ($products as $product)
+            <div class="products__item">
+                <div class="product__header mb-3">
+                  <a href="{{route('front.single.product.index', $product->id)}}">
+                    <div class="product__img-cont">
+                      <img class="product__img w-100 h-100 object-fit-cover" src="{{url('admin/assets/images/products/'. $product->img)}}" data-id="white">
+                    </div>
+                  </a>
+                  <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
+                    وفر 10%
+                  </div>
+                  <div
+                    class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
+                    <i class="fa-regular fa-heart"></i>
+                  </div>
+                </div>
+                <div class="product__title text-center">
+                  <a class="text-black text-decoration-none" href="{{route('front.single.product.index', $product->id)}}">
+                    {{ $product->title }}
+                  </a>
+                </div>
+                <div class="product__author text-center">
+                  {{ $product->auther }}
+                </div>
+                <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
+                  <span class="product__price product__price--old">
+                    {{ $product->price }}
+                  </span>
+                  <span class="product__price">
+                    {{ $product->price - $product->discount }}
+                  </span>
+                </div>
               </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Flutter Apprentice
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Mike Katz
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Modern Full-Stack Development
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Frank Zammetti
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              450.00 جنيه
-            </span>
-            <span class="product__price">
-              250.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              C# 10 in a Nutshell
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Joseph Albahari
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              650.00 جنيه
-            </span>
-            <span class="product__price">
-              450.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Algorithms عربي
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Aditya Y. Bhargava
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              359.00 جنيه
-            </span>
-            <span class="product__price">
-              249.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-5.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Head-First Design Patterns
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Eric Freeman & Elisabeth Robson
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-1.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Flutter Apprentice
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Mike Katz
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Modern Full-Stack Development
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Frank Zammetti
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              450.00 جنيه
-            </span>
-            <span class="product__price">
-              250.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              C# 10 in a Nutshell
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Joseph Albahari
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              650.00 جنيه
-            </span>
-            <span class="product__price">
-              450.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Algorithms عربي
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Aditya Y. Bhargava
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              359.00 جنيه
-            </span>
-            <span class="product__price">
-              249.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-5.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Head-First Design Patterns
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Eric Freeman & Elisabeth Robson
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
+            @empty
+                nothing
+            @endforelse
+        @endisset
+
+
+
       </div>
     </section>
     <!-- Products Section End -->
 
     <!-- Categories Section Start -->
     <section class="section-container mb-5">
-      <div class="categories row gx-4">
-        <div class="col-md-6 p-2">
-          <div class="p-4 border rounded-3">
-            <img class="w-100" src="{{url('front/assets/images/category-1.png')}}" alt="">
-          </div>
+        <div class="categories row gx-4">
+
+        @isset($banners)
+            @foreach ($banners as $banner)
+            <div class="col-md-6 p-2">
+                <div class="p-4 border rounded-3">
+                    <img class="w-100" src="{{url('admin/assets/images/banners/' . $banner->img)}}" alt="">
+                </div>
+            </div>
+            @endforeach
+        @endisset
         </div>
-        <div class="col-md-6 p-2">
-          <div class="p-4 border rounded-3">
-            <img class="w-100" src="{{url('front/assets/images/category-2.png')}}" alt="">
-          </div>
-        </div>
-      </div>
     </section>
     <!-- Categories Section End -->
 
@@ -397,324 +123,44 @@
       </div>
       <div class="owl-carousel products__slider owl-theme">
         <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-1.webp')}}" data-id="white">
+            @isset($products)
+            @forelse ($products as $product)
+            <div class="products__item">
+                <div class="product__header mb-3">
+                  <a href="{{route('front.single.product.index', $product->id)}}">
+                    <div class="product__img-cont">
+                      <img class="product__img w-100 h-100 object-fit-cover" src="{{url('admin/assets/images/products/'. $product->img)}}" data-id="white">
+                    </div>
+                  </a>
+                  <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
+                    وفر 10%
+                  </div>
+                  <div
+                    class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
+                    <i class="fa-regular fa-heart"></i>
+                  </div>
+                </div>
+                <div class="product__title text-center">
+                  <a class="text-black text-decoration-none" href="{{route('front.single.product.index', $product->id)}}">
+                    {{ $product->title }}
+                  </a>
+                </div>
+                <div class="product__author text-center">
+                  {{ $product->auther }}
+                </div>
+                <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
+                  <span class="product__price product__price--old">
+                    {{ $product->price }}
+                  </span>
+                  <span class="product__price">
+                    {{ $product->price - $product->discount }}
+                  </span>
+                </div>
               </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Flutter Apprentice
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Mike Katz
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Modern Full-Stack Development
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Frank Zammetti
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              450.00 جنيه
-            </span>
-            <span class="product__price">
-              250.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              C# 10 in a Nutshell
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Joseph Albahari
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              650.00 جنيه
-            </span>
-            <span class="product__price">
-              450.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Algorithms عربي
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Aditya Y. Bhargava
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              359.00 جنيه
-            </span>
-            <span class="product__price">
-              249.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-5.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Head-First Design Patterns
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Eric Freeman & Elisabeth Robson
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-1.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Flutter Apprentice
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Mike Katz
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Modern Full-Stack Development
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Frank Zammetti
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              450.00 جنيه
-            </span>
-            <span class="product__price">
-              250.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              C# 10 in a Nutshell
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Joseph Albahari
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              650.00 جنيه
-            </span>
-            <span class="product__price">
-              450.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Algorithms عربي
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Aditya Y. Bhargava
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              359.00 جنيه
-            </span>
-            <span class="product__price">
-              249.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-5.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Head-First Design Patterns
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Eric Freeman & Elisabeth Robson
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
+            @empty
+                nothing
+            @endforelse
+        @endisset
         </div>
       </div>
     </section>
@@ -728,324 +174,44 @@
       </div>
       <div class="owl-carousel products__slider owl-theme">
         <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-1.webp')}}" data-id="white">
+            @isset($products)
+            @forelse ($products as $product)
+            <div class="products__item">
+                <div class="product__header mb-3">
+                  <a href="{{route('front.single.product.index', $product->id)}}">
+                    <div class="product__img-cont">
+                      <img class="product__img w-100 h-100 object-fit-cover" src="{{url('admin/assets/images/products/'. $product->img)}}" data-id="white">
+                    </div>
+                  </a>
+                  <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
+                    وفر 10%
+                  </div>
+                  <div
+                    class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
+                    <i class="fa-regular fa-heart"></i>
+                  </div>
+                </div>
+                <div class="product__title text-center">
+                  <a class="text-black text-decoration-none" href="{{route('front.single.product.index', $product->id)}}">
+                    {{ $product->title }}
+                  </a>
+                </div>
+                <div class="product__author text-center">
+                  {{ $product->auther }}
+                </div>
+                <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
+                  <span class="product__price product__price--old">
+                    {{ $product->price }}
+                  </span>
+                  <span class="product__price">
+                    {{ $product->price - $product->discount }}
+                  </span>
+                </div>
               </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Flutter Apprentice
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Mike Katz
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Modern Full-Stack Development
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Frank Zammetti
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              450.00 جنيه
-            </span>
-            <span class="product__price">
-              250.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              C# 10 in a Nutshell
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Joseph Albahari
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              650.00 جنيه
-            </span>
-            <span class="product__price">
-              450.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Algorithms عربي
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Aditya Y. Bhargava
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              359.00 جنيه
-            </span>
-            <span class="product__price">
-              249.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-5.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Head-First Design Patterns
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Eric Freeman & Elisabeth Robson
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-1.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Flutter Apprentice
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Mike Katz
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Modern Full-Stack Development
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Frank Zammetti
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              450.00 جنيه
-            </span>
-            <span class="product__price">
-              250.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              C# 10 in a Nutshell
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Joseph Albahari
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              650.00 جنيه
-            </span>
-            <span class="product__price">
-              450.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Algorithms عربي
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Aditya Y. Bhargava
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              359.00 جنيه
-            </span>
-            <span class="product__price">
-              249.00 جنيه
-            </span>
-          </div>
-        </div>
-        <div class="products__item">
-          <div class="product__header mb-3">
-            <a href="{{route('front.single.product.index')}}">
-              <div class="product__img-cont">
-                <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-5.webp" data-id="white">
-              </div>
-            </a>
-            <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-              وفر 10%
-            </div>
-            <div
-              class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-              <i class="fa-regular fa-heart"></i>
-            </div>
-          </div>
-          <div class="product__title text-center">
-            <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-              Head-First Design Patterns
-            </a>
-          </div>
-          <div class="product__author text-center">
-            Eric Freeman & Elisabeth Robson
-          </div>
-          <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-            <span class="product__price product__price--old">
-              550.00 جنيه
-            </span>
-            <span class="product__price">
-              350.00 جنيه
-            </span>
-          </div>
+            @empty
+                nothing
+            @endforelse
+        @endisset
         </div>
       </div>
     </section>

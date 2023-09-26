@@ -7,19 +7,19 @@
       <!-- Product details Start -->
       <section class="section-container my-5 pt-5 d-md-flex gap-5">
         <div class="single-product__img w-100" id="main-img">
-          <img src="{{url('front/assets/images/product-2.webp')}}" alt="">
+          <img src="{{url('admin/assets/images/products/', $product->img)}}" alt="">
         </div>
         <div class="single-product__details w-100 d-flex flex-column justify-content-between">
           <div>
-            <h4>Modern Full-Stack Development</h4>
-            <div class="product__author">Frank Zammetti</div>
-            <div class="product__author">373 صفحة</div>
+            <h4>{{ $product->title }}</h4>
+            <div class="product__author">{{ $product->auther }}</div>
+            <div class="product__author">{{ $product->pages_num }} pages</div>
             <div class="product__price mb-3 text-center d-flex gap-2">
               <span class="product__price product__price--old fs-6 ">
-                450.00 جنيه
+                {{ $product->price }}
               </span>
               <span class="product__price fs-5">
-                250.00 جنيه
+                {{ $product->price - $product->discount }}
               </span>
             </div>
             <div class="d-flex w-100 gap-2 mb-3">
@@ -36,12 +36,24 @@
             </div>
           </div>
           <div class="single-product__categories">
-            <p class="mb-0">رمز المنتج: غير محدد</p>
+            <p class="mb-0">رمز المنتج:  {{ $product->product_code }}  </p>
             <div>
-              <span>التصنيفات: </span><a href="{{route('front.shop.index')}}">new</a>, <a href="{{route('front.shop.index')}}">احذية</a>, <a href="{{route('front.shop.index')}}">رجاليه</a>
+            <span>التصنيفات:
+                </span>
+                @foreach ($categories as $category)
+                <a href="{{route('front.shop.index')}}">
+                    {{ $category->title }},
+                </a>
+                @endforeach
+
             </div>
             <div>
-              <span>الوسوم: </span><a href="{{route('front.shop.index')}}">pr150</a>, <a href="{{route('front.shop.index')}}">flotrate</a>
+                <span>الوسوم: </span>
+                @foreach ($tags as $tag)
+                    <a href="{{route('front.shop.index')}}">
+                        {{ $tag->title }},
+                    </a>
+                @endforeach
             </div>
           </div>
         </div>
@@ -62,46 +74,29 @@
         </nav>
         <div class="tab-content pt-4" id="nav-tabContent">
           <div class="tab-pane show active" id="nav-description" role="tabpanel" aria-labelledby="single-product__describtion-tab" tabindex="0">
-            Modern Full-Stack Development 
+            {{ $product->title }}
           </div>
           <div class="questions tab-pane" id="single-product__questions" role="tabpanel" aria-labelledby="single-product__questions-tab" tabindex="0">
             <div class="questions__list accordion" id="question__list">
-              <div class="questions__item accordion-item">
-                <h2 class="questions__header accordion-header" id="question1">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    الشحن بيوصل خلال قد ايه؟
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="question1" data-bs-parent="#question__list">
-                  <div class="accordion-body">
-                    خلال 3 ايام داخل القاهرة والجيزة و7 ايام خارج القاهرة والجيزة.
-                  </div>
-                </div>
-              </div>
-              <div class="questions__item accordion-item">
-                <h2 class="questions__header accordion-header" id="headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    خامات التصنيع؟
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#question__list">
-                  <div class="accordion-body">
-                    خامات مصرية عالية الجودة.
-                  </div>
-                </div>
-              </div>
-              <div class="questions__item accordion-item">
+
+            @foreach ($faqs as $faq)
+            <div class="questions__item accordion-item">
                 <h2 class="questions__header accordion-header" id="headingThree">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    متاح استبدال او استرجاع المنتج
-                  </button>
+                     {{ $faq->question }}
+                </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#question__list">
                   <div class="accordion-body">
-                    نعم، متاح الاستبدال والاسترجاع خلال 7 ايام، برجاء مراجعة <a class="text-danger" href="{{route('front.refund.policy.index')}}">سياسة الاسترجاع والاستبدال</a>.
+                    {{ $faq->answer }}
+
                   </div>
                 </div>
               </div>
+            @endforeach
+            <a class="text-danger" href="{{route('front.refund.policy.index')}}">سياسة الاسترجاع والاستبدال</a>.
+
+
             </div>
           </div>
         </div>
@@ -167,36 +162,40 @@
         </div>
         <div class="row">
           <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
+
+            @foreach ($products as $all_prdouct)
             <div class="product__header mb-3">
-              <a href="{{route('front.single.product.index')}}">
-                <div class="product__img-cont">
-                  <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-1.webp')}}" data-id="white">
+                <a href="{{route('front.single.product.index', $all_prdouct->id)}}">
+                  <div class="product__img-cont">
+                    <img class="product__img w-100 h-100 object-fit-cover" src="{{url('admin/assets/images/products/', $all_prdouct->img)}}" data-id="white">
+                  </div>
+                </a>
+                <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
+                  {{ $all_prdouct->discount }}وفر
                 </div>
-              </a>
-              <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-                وفر 10%
+                <div
+                  class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
+                  <i class="fa-regular fa-heart"></i>
+                </div>
               </div>
-              <div
-                class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-                <i class="fa-regular fa-heart"></i>
+              <div class="product__title text-center">
+                <a class="text-black text-decoration-none" href="{{route('front.single.product.index', $all_prdouct->id)}}">
+                  {{ $all_prdouct->title }}
+                </a>
               </div>
-            </div>
-            <div class="product__title text-center">
-              <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-                Flutter Apprentice
-              </a>
-            </div>
-            <div class="product__author text-center">
-              Mike Katz
-            </div>
-            <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-              <span class="product__price product__price--old">
-                550.00 جنيه
-              </span>
-              <span class="product__price">
-                350.00 جنيه
-              </span>
-            </div>
+              <div class="product__author text-center">
+                {{ $all_prdouct->auther }}
+              </div>
+              <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
+                <span class="product__price product__price--old">
+                    {{ $all_prdouct->price }}
+                </span>
+                <span class="product__price">
+                    {{ $all_prdouct->price - $all_prdouct->discount}}
+                </span>
+              </div>
+            @endforeach
+
           </div>
         </div>
       </section>
@@ -210,132 +209,38 @@
         </div>
         <div class="row">
           <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
+            @foreach ($products as $all_prdouct)
             <div class="product__header mb-3">
-              <a href="{{route('front.single.product.index')}}">
-                <div class="product__img-cont">
-                  <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-1.webp')}}" data-id="white">
+                <a href="{{route('front.single.product.index', $all_prdouct->id)}}">
+                  <div class="product__img-cont">
+                    <img class="product__img w-100 h-100 object-fit-cover" src="{{url('admin/assets/images/products/', $all_prdouct->img)}}" data-id="white">
+                  </div>
+                </a>
+                <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
+                  {{ $all_prdouct->discount }}وفر
                 </div>
-              </a>
-              <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-                وفر 10%
-              </div>
-              <div
-                class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-                <i class="fa-regular fa-heart"></i>
-              </div>
-            </div>
-            <div class="product__title text-center">
-              <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-                Flutter Apprentice
-              </a>
-            </div>
-            <div class="product__author text-center">
-              Mike Katz
-            </div>
-            <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-              <span class="product__price product__price--old">
-                550.00 جنيه
-              </span>
-              <span class="product__price">
-                350.00 جنيه
-              </span>
-            </div>
-          </div>
-          <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-            <div class="product__header mb-3">
-              <a href="{{route('front.single.product.index')}}">
-                <div class="product__img-cont">
-                  <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-2.webp')}}" data-id="white">
+                <div
+                  class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
+                  <i class="fa-regular fa-heart"></i>
                 </div>
-              </a>
-              <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-                وفر 10%
               </div>
-              <div
-                class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-                <i class="fa-regular fa-heart"></i>
+              <div class="product__title text-center">
+                <a class="text-black text-decoration-none" href="{{route('front.single.product.index', $all_prdouct->id)}}">
+                  {{ $all_prdouct->title }}
+                </a>
               </div>
-            </div>
-            <div class="product__title text-center">
-              <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-                Modern Full-Stack Development
-              </a>
-            </div>
-            <div class="product__author text-center">
-              Frank Zammetti
-            </div>
-            <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-              <span class="product__price product__price--old">
-                450.00 جنيه
-              </span>
-              <span class="product__price">
-                250.00 جنيه
-              </span>
-            </div>
-          </div>
-          <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-            <div class="product__header mb-3">
-              <a href="{{route('front.single.product.index')}}">
-                <div class="product__img-cont">
-                  <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-3.webp')}}" data-id="white">
-                </div>
-              </a>
-              <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-                وفر 10%
+              <div class="product__author text-center">
+                {{ $all_prdouct->auther }}
               </div>
-              <div
-                class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-                <i class="fa-regular fa-heart"></i>
+              <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
+                <span class="product__price product__price--old">
+                    {{ $all_prdouct->price }}
+                </span>
+                <span class="product__price">
+                    {{ $all_prdouct->price - $all_prdouct->discount}}
+                </span>
               </div>
-            </div>
-            <div class="product__title text-center">
-              <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-                C# 10 in a Nutshell
-              </a>
-            </div>
-            <div class="product__author text-center">
-              Joseph Albahari
-            </div>
-            <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-              <span class="product__price product__price--old">
-                650.00 جنيه
-              </span>
-              <span class="product__price">
-                450.00 جنيه
-              </span>
-            </div>
-          </div>
-          <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-            <div class="product__header mb-3">
-              <a href="{{route('front.single.product.index')}}">
-                <div class="product__img-cont">
-                  <img class="product__img w-100 h-100 object-fit-cover" src="{{url('front/assets/images/product-4.webp')}}" data-id="white">
-                </div>
-              </a>
-              <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-                وفر 10%
-              </div>
-              <div
-                class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-                <i class="fa-regular fa-heart"></i>
-              </div>
-            </div>
-            <div class="product__title text-center">
-              <a class="text-black text-decoration-none" href="{{route('front.single.product.index')}}">
-                Algorithms عربي
-              </a>
-            </div>
-            <div class="product__author text-center">
-              Aditya Y. Bhargava
-            </div>
-            <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-              <span class="product__price product__price--old">
-                359.00 جنيه
-              </span>
-              <span class="product__price">
-                249.00 جنيه
-              </span>
-            </div>
+            @endforeach
           </div>
         </div>
       </section>

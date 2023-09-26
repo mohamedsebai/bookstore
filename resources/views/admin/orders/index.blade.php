@@ -51,7 +51,7 @@
                             @method('DELETE')
                             <input type="submit" value="delete" class="btn btn-danger">
                         </form>
-                    </td>
+                        </td>
                     </tr>
                 @empty
                     <div class="alert alert-danger">There is no orders yet</div>
