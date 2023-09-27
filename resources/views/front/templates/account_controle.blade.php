@@ -13,7 +13,7 @@
               <a class="py-2 px-3 text-black text-decoration-none" href="{{route('front.orders.index')}}">الطلبات</a>
             </li>
             <li class="profile__tab">
-              <a class="py-2 px-3 text-black text-decoration-none" href="{{route('front.orders.details')}}">تفاصيل الحساب</a>
+              <a class="py-2 px-3 text-black text-decoration-none" href="{{route('front.account.details')}}">تفاصيل الحساب</a>
             </li>
             <li class="profile__tab">
               <a class="py-2 px-3 text-black text-decoration-none" href="{{route('front.favourite.index')}}">المفضلة</a>
