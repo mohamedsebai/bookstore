@@ -23,16 +23,28 @@
               </span>
             </div>
             <div class="d-flex w-100 gap-2 mb-3">
-              <div class="single-product__quanitity position-relative">
-                <input class="single-product__input text-center px-3" type="number" value="1" placeholder="---">
-                <button class="single-product__increase border-0 bg-transparent position-absolute end-0 h-100 px-3">+</button>
-                <button class="single-product__decrease border-0 bg-transparent position-absolute start-0 h-100 px-3">-</button>
-              </div>
-              <button class="single-product__add-to-cart primary-button w-100">اضافه الي السلة</button>
+
+
+              @if (session('message'))
+                  <div class="alert alert-success">{{ session('message') }}</div>
+              @endif
+
+              <form action="{{ route('front.cart.store', $product->id) }}" method="post">
+                @csrf
+                <div class="form-group">
+                    <input type="number" name="quantity" class="form-control mt-2 mb-2" placeholder="type quantity">
+                </div>
+
+                <input type="submit" class="single-product__add-to-cart primary-button w-100" value="added to your cart">
+              </form>
+              {{-- <a class="single-product__add-to-cart primary-button w-100" href="{{ route('front.cart.store') }}">ة</a> --}}
             </div>
             <div class="single-product__favourite d-flex align-items-center gap-2 mb-4">
               <i class="fa-regular fa-heart"></i>
-              اضافة للمفضلة
+              <form action="{{ route('front.cart.addToFav', $product->id) }}" method="post">
+                @csrf
+                <input type="submit" class="single-product__add-to-cart primary-button w-100" value="added to favourit">
+              </form>
             </div>
           </div>
           <div class="single-product__categories">

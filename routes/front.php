@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\BrancheController;
 use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\ContactController;
@@ -33,6 +34,10 @@ Route::group(['as'=>'front.'], function(){
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
     Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+
+    Route::post('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/fav/{id}', [CartController::class, 'addToFav'])->name('cart.addToFav');
+
 
 
 
