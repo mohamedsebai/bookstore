@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     public function index(){
-        return view('front.orders.orders');
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+        return view('front.orders.orders', compact('orders'));
     }
 
     public function details(){ // need an id but no for try code only
